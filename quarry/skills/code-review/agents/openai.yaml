@@ -1,0 +1,5 @@
+interface:
+  display_name: "Code Review"
+  short_description: "Two-axis review: Standards and Spec"
+policy:
+  allow_implicit_invocation: true

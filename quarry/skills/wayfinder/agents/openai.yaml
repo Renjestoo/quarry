@@ -1,0 +1,5 @@
+interface:
+  display_name: "Wayfinder"
+  short_description: "Chart foggy efforts as decision tickets"
+policy:
+  allow_implicit_invocation: true

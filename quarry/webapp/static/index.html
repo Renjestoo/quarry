@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" data-profile="Nebula">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quarry</title>
+<link rel="stylesheet" href="/fonts.css">
+<link rel="stylesheet" href="/app.css">
+<link rel="stylesheet" href="/board.css">
+<link rel="stylesheet" href="/pages.css">
+</head>
+<body>
+
+<div class="app">
+  <nav class="rail" id="rail">
+    <div class="mark">
+      <button class="railtoggle" id="railtoggle" title="Collapse the rail" aria-label="Collapse the rail">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1"></circle>
+          <circle cx="12" cy="12" r="3.1" fill="currentColor"></circle>
+        </svg>
+      </button>
+      <span class="wordmark">Quarry</span>
+    </div>
+
+    <div class="nav" id="nav"></div>
+
+    <div class="rfoot">
+      <div class="swatches" id="swatches"></div>
+      <div class="rfootline" data-bind="project">quarry</div>
+    </div>
+  </nav>
+
+  <main class="main">
+    <header class="head">
+      <div>
+        <h1 class="h1" data-bind="pagetitle">graph</h1>
+        <p class="h2" data-bind="pagesub">loading</p>
+      </div>
+      <div class="wire" id="wire" title="API connection">
+        <span class="beacon" id="beacon"></span>
+        <span data-bind="wiretext">connecting</span>
+      </div>
+    </header>
+
+    <section class="page" id="page-graph" hidden>
+      <div class="graphwrap" id="graphwrap">
+        <svg class="graph" id="graph" role="img" aria-label="Dependency graph"></svg>
+        <div class="labels" id="labels"></div>
+      </div>
+      <aside class="detail" id="detail" hidden></aside>
+      <div class="flowstrip" id="flowstrip" hidden></div>
+      <div class="legend">
+        <span class="lg"><i class="dot ready"></i>ready</span>
+        <span class="lg"><i class="dot claimed"></i>claimed</span>
+        <span class="lg"><i class="dot blocked"></i>blocked</span>
+        <span class="lg"><i class="dot claimed_blocked"></i>claimed, but blocked</span>
+        <span class="lg"><i class="dot closed"></i>closed</span>
+        <span class="lg"><i class="dot size"></i>radius = how much it blocks</span>
+        <span class="lg"><i class="line blocks"></i>blocks</span>
+        <span class="lg"><i class="line parent"></i>epic and its children</span>
+        <span class="lg"><i class="line related"></i>related, no ordering implied</span>
+        <span class="lg"><i class="line discovered"></i>discovered while working on</span>
+        <span class="lg">drag to pin a node, double-click it to let go</span>
+        <button class="btn release" type="button" id="resetview">Reset view</button>
+        <button class="btn" type="button" id="release">Release all</button>
+      </div>
+    </section>
+
+    <section class="page" id="page-ready" hidden>
+      <p class="lede">
+        Work whose blockers are all closed, so it can be started right now. Claim one to
+        mark it yours before you begin, so a parallel session does not pick up the same
+        ticket. Close it when its acceptance criteria are demonstrably met, which promotes
+        whatever it was blocking into this same queue. Hover any button to see exactly
+        what it will do.
+      </p>
+      <form class="create" id="create">
+        <input class="field" id="newtitle" placeholder="Title for a new issue" autocomplete="off" required>
+        <select class="field pick" id="newtype" aria-label="Issue type">
+          <option value="task">task</option>
+          <option value="bug">bug</option>
+          <option value="feature">feature</option>
+          <option value="chore">chore</option>
+          <option value="decision">decision</option>
+          <option value="epic">epic</option>
+          <option value="spike">spike</option>
+          <option value="story">story</option>
+          <option value="milestone">milestone</option>
+        </select>
+        <select class="field pick" id="newpri" aria-label="Priority">
+          <option value="0">P0</option>
+          <option value="1">P1</option>
+          <option value="2" selected>P2</option>
+          <option value="3">P3</option>
+          <option value="4">P4</option>
+        </select>
+        <button class="btn primary" type="submit">Create</button>
+      </form>
+      <p class="apihint">POST /api/issues runs bd create</p>
+      <div class="rows" id="readyrows"></div>
+    </section>
+
+    <section class="page" id="page-board" hidden>
+      <div class="tabs" id="boardtabs" role="tablist">
+        <button class="tab" type="button" role="tab" data-tab="kanban">Kanban</button>
+        <button class="tab" type="button" role="tab" data-tab="roadmap">Roadmap</button>
+        <button class="tab" type="button" role="tab" data-tab="fleet">Fleet</button>
+      </div>
+      <p class="lede" id="boardlede"></p>
+      <p class="apihint" id="boardhint"></p>
+      <div class="kboard" id="board" hidden></div>
+      <div class="rmap" id="roadmap" hidden></div>
+      <div class="fleet" id="fleet" hidden></div>
+    </section>
+
+    <section class="page" id="page-paths" hidden>
+      <p class="apihint" id="pathshint">six journeys through quarry, first command to last</p>
+      <div class="lanes" id="lanes"></div>
+      <div class="legend pathkey">
+        <span class="lg"><i class="sq step"></i>a command or skill you run</span>
+        <span class="lg"><i class="sq end"></i>where the path ends</span>
+        <span class="lg"><i class="sq branch"></i>a branch, taken only when the label applies</span>
+      </div>
+    </section>
+
+    <section class="page" id="page-guide" hidden>
+      <p class="apihint" id="guidehint">a command is typed, a skill fires on what you say</p>
+      <div class="guide" id="guidebody"></div>
+      <div class="drift" id="drift" hidden></div>
+    </section>
+
+    <section class="page" id="page-strata" hidden>
+      <form class="ask" id="askform">
+        <input class="field bare" id="askbox" placeholder="Ask sealed history a question" autocomplete="off">
+      </form>
+      <p class="apihint">answers come back as passages at addresses like K4:120-135, never whole units</p>
+      <div class="passages" id="passages"></div>
+      <div class="seams" id="seams"></div>
+    </section>
+
+    <section class="page" id="page-activity" hidden>
+      <div class="rows" id="feedrows"></div>
+    </section>
+
+    <section class="page" id="page-settings" hidden>
+      <p class="lede">
+        The interaction mode is project state and lives in the same file `/quarry:mode`
+        reads, so the dashboard and the command can never disagree. The colour profile is
+        yours alone and stays in this browser. The connection facts are what the server was
+        started with.
+      </p>
+      <p class="apihint">GET /api/settings, POST /api/settings/mode</p>
+      <div class="scards" id="settings"></div>
+    </section>
+
+    <div class="bar" id="bar">
+      <span class="brandbit">quarry</span>
+      <span class="sep">|</span>
+      <span data-bind="c-ready">0 ready</span>
+      <span class="sep">|</span>
+      <span class="amber" data-bind="c-claimed">0 claimed</span>
+      <span class="sep">|</span>
+      <span data-bind="c-blocked">0 blocked</span>
+      <span class="sep">|</span>
+      <span data-bind="c-lines">0 preserved lines</span>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="/viewport.js"></script>
+<script src="/graph.js"></script>
+<script src="/kanban.js"></script>
+<script src="/roadmap.js"></script>
+<script src="/fleet.js"></script>
+<script src="/detail.js"></script>
+<script src="/settings.js"></script>
+<script src="/tooltip.js"></script>
+<script src="/reference.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

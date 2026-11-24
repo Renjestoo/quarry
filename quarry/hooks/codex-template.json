@@ -1,0 +1,63 @@
+{
+  "description": "Quarry's lifecycle hooks for a Codex host.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python\"${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py\" hook SessionStart",
+            "statusMessage": "Quarry: injecting workflow state and memory index"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "manual|auto",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python\"${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py\" hook PreCompact",
+            "statusMessage": "Quarry: sealing this context window"
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "matcher": "manual|auto",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python\"${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py\" hook PostCompact",
+            "statusMessage": "Quarry: marking memory refresh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python\"${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py\" hook UserPromptSubmit",
+            "statusMessage": "Quarry: refreshing memory index"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python\"${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py\" hook Stop",
+            "statusMessage": "Quarry: auditing this reply"
+          }
+        ]
+      }
+    ]
+  }
+}

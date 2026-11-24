@@ -1,0 +1,5 @@
+interface:
+  display_name: "Spec"
+  short_description: "Synthesize the conversation into a tracked spec"
+policy:
+  allow_implicit_invocation: true

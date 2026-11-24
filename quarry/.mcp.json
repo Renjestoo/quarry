@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "quarry_knowledge": {
+      "command": "${QUARRY_PYTHON:-python}",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py", "mcp"]
+    }
+  }
+}

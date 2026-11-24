@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" width="1280" height="360" role="img" aria-labelledby="t d">
+  <title id="t">Quarry: cut big ideas into work your agent can finish</title>
+  <desc id="d">The Quarry mark and name, with the tagline.</desc>
+  <defs>
+    <mask id="cut">
+      <rect width="256" height="256" fill="#fff"/>
+      <rect x="146" y="146" width="110" height="110" fill="#000"/>
+    </mask>
+  </defs>
+  <rect width="1280" height="360" rx="28" fill="#0d0d12"/>
+  <g transform="translate(232 62) scale(0.92)">
+    <rect x="57" y="57" width="126" height="126" rx="30" fill="none" stroke="#ededf0" stroke-width="30" mask="url(#cut)"/>
+    <rect x="166" y="166" width="48" height="48" rx="10" fill="#e0af68"/>
+  </g>
+  <text x="478" y="192" font-family="'Space Grotesk', 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="108" font-weight="700" letter-spacing="-2" fill="#ededf0">Quarry</text>
+  <text x="483" y="246" font-family="'Space Grotesk', 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="28" fill="#a9a9b4">Cut big ideas into work your agent can finish.</text>
+</svg>

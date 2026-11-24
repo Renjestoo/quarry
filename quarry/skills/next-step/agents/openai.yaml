@@ -1,0 +1,5 @@
+interface:
+  display_name: "Next Step"
+  short_description: "The exact next command, verified against bd rather than a file"
+policy:
+  allow_implicit_invocation: true

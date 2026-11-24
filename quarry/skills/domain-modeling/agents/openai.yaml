@@ -1,0 +1,5 @@
+interface:
+  display_name: "Domain Modeling"
+  short_description: "Maintain the CONTEXT.md glossary and ADRs"
+policy:
+  allow_implicit_invocation: true

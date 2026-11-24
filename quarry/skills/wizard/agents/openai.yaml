@@ -1,0 +1,5 @@
+interface:
+  display_name: "Wizard"
+  short_description: "Guided script for human-only setup steps"
+policy:
+  allow_implicit_invocation: true

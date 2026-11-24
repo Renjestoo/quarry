@@ -1,0 +1,5 @@
+interface:
+  display_name: "Flow Something Broke"
+  short_description: "Pin the diagnose-before-fixing lane"
+policy:
+  allow_implicit_invocation: true

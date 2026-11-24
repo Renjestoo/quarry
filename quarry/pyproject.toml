@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quarry-engine"
+version = "0.21.4"
+description = "The quarry plugin's engine: sealing, mesh recall, bd/atlas access, the dashboard's data layer."
+requires-python = ">=3.11"
+
+[tool.setuptools]
+packages = ["quarry_lib", "webapp"]
+
+[tool.setuptools.package-dir]
+quarry_lib = "scripts/quarry_lib"
+webapp = "webapp"

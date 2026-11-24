@@ -1,0 +1,5 @@
+interface:
+  display_name: "Next Workflow"
+  short_description: "Retire a phase, author the next"
+policy:
+  allow_implicit_invocation: true

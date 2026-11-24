@@ -1,0 +1,5 @@
+interface:
+  display_name: "Flow Cold Resume"
+  short_description: "Pin the resume-from-durable-state lane"
+policy:
+  allow_implicit_invocation: true

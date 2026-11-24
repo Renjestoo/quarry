@@ -1,0 +1,100 @@
+{
+  "name": "quarry",
+  "description": "Durable agent work: sealed conversation memory, bd-backed issue tracking, and a spec-to-implementation lifecycle that survive compaction.",
+  "version": "0.21.4",
+  "author": {
+    "name": "Renjestoo"
+  },
+  "license": "MIT",
+  "keywords": ["memory", "issue-tracking", "workflow", "context", "resumability"],
+  "skills": "./skills/",
+  "commands": "./skills/quarry/commands/quarry/",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${QUARRY_PYTHON:-python}\" ${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py hook SessionStart"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${QUARRY_PYTHON:-python}\" ${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py hook PreCompact"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${QUARRY_PYTHON:-python}\" ${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py hook UserPromptSubmit"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${QUARRY_PYTHON:-python}\" ${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py hook Stop"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Grep|Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${QUARRY_PYTHON:-python}\" ${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py guard grep",
+            "timeout": 20
+          }
+        ]
+      },
+      {
+        "matcher": "TodoWrite|TaskCreate",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${QUARRY_PYTHON:-python}\" ${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py guard todo",
+            "timeout": 20
+          }
+        ]
+      },
+      {
+        "matcher": "Read|Grep|Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${QUARRY_PYTHON:-python}\" ${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py guard recall",
+            "timeout": 20
+          }
+        ]
+      },
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${QUARRY_PYTHON:-python}\" ${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py guard flow",
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  }
+}

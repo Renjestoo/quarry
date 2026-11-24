@@ -1,0 +1,5 @@
+interface:
+  display_name: "To Questionnaire"
+  short_description: "Package grilling for an absent answerer"
+policy:
+  allow_implicit_invocation: true

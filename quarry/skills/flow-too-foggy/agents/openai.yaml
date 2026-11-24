@@ -1,0 +1,5 @@
+interface:
+  display_name: "Flow Too Foggy"
+  short_description: "Pin the chart-the-fog lane"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Triage"
+  short_description: "Move inbound issues through the label machine"
+policy:
+  allow_implicit_invocation: true

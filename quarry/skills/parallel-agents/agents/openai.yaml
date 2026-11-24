@@ -1,0 +1,5 @@
+interface:
+  display_name: "Parallel Agents"
+  short_description: "Run several agents on one tracker safely"
+policy:
+  allow_implicit_invocation: true

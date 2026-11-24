@@ -1,0 +1,5 @@
+interface:
+  display_name: "Diagnosing Bugs"
+  short_description: "Feedback loop first, then hypotheses"
+policy:
+  allow_implicit_invocation: true

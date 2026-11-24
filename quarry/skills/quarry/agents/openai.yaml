@@ -1,0 +1,5 @@
+interface:
+  display_name: "Quarry"
+  short_description: "Durable work router: memory, tracker, atlas, lifecycle"
+policy:
+  allow_implicit_invocation: true

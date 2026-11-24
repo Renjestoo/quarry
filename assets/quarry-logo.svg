@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="t d">
+  <title id="t">Quarry</title>
+  <desc id="d">The letter Q as a square ring of stone. Its lower right corner is cut out as one block and moved a short distance away.</desc>
+  <defs>
+    <mask id="cut">
+      <rect width="256" height="256" fill="#fff"/>
+      <rect x="146" y="146" width="110" height="110" fill="#000"/>
+    </mask>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="#0d0d12"/>
+  <rect x="57" y="57" width="126" height="126" rx="30" fill="none" stroke="#ededf0" stroke-width="30" mask="url(#cut)"/>
+  <rect x="166" y="166" width="48" height="48" rx="10" fill="#e0af68"/>
+</svg>

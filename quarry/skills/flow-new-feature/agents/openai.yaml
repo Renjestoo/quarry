@@ -1,0 +1,5 @@
+interface:
+  display_name: "Flow New Feature"
+  short_description: "Pin the idea-to-shipped lane"
+policy:
+  allow_implicit_invocation: true

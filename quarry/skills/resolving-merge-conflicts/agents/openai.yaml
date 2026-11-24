@@ -1,0 +1,5 @@
+interface:
+  display_name: "Resolving Merge Conflicts"
+  short_description: "Resolve conflicts by traced intent"
+policy:
+  allow_implicit_invocation: true

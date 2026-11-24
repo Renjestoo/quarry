@@ -1,0 +1,5 @@
+interface:
+  display_name: "Research"
+  short_description: "Cited answers from primary sources"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Flow Phase Running"
+  short_description: "Pin the open-phase-epic lane"
+policy:
+  allow_implicit_invocation: true

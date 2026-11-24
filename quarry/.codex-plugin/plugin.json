@@ -1,0 +1,32 @@
+{
+  "name": "quarry",
+  "version": "0.21.4",
+  "description": "Durable agent work: sealed conversation memory, bd-backed issue tracking, and a spec-to-implementation lifecycle that survive compaction.",
+  "author": {
+    "name": "Renjestoo"
+  },
+  "license": "MIT",
+  "keywords": ["memory", "issue-tracking", "workflow", "context", "resumability"],
+  "skills": "./skills/",
+  "hooks": "./hooks/codex-template.json",
+  "mcpServers": {
+    "quarry_knowledge": {
+      "command": "python",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/quarry.py", "mcp"]
+    }
+  },
+  "interface": {
+    "displayName": "Quarry",
+    "shortDescription": "Work that survives compaction",
+    "longDescription": "Quarry seals conversation history into immutable, searchable units that you can ask questions about, tracks work in the bd issue tracker as a dependency-gated ready queue, and runs a grill, spec, tickets, implement lifecycle with a YOLO autonomy toggle.",
+    "developerName": "Renjestoo",
+    "category": "Developer Tools",
+    "capabilities": ["Skills", "Task tracking", "Long-term memory"],
+    "defaultPrompt": [
+      "Show me what work is ready",
+      "Ask my sealed history about the retry decision",
+      "Grill this idea into a spec"
+    ],
+    "brandColor": "#8B7355"
+  }
+}

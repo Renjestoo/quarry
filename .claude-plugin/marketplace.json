@@ -1,0 +1,14 @@
+{
+  "name": "renjestoo",
+  "owner": {
+    "name": "Renjestoo"
+  },
+  "plugins": [
+    {
+      "name": "quarry",
+      "source": "./quarry",
+      "description": "Durable agent work: sealed conversation memory, bd-backed issue tracking, and a spec-to-implementation lifecycle that survive compaction.",
+      "version": "0.21.4"
+    }
+  ]
+}

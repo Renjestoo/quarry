@@ -1,0 +1,5 @@
+interface:
+  display_name: "Implement"
+  short_description: "Execute one ticket test-first and close it"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Handoff"
+  short_description: "Seal and hand state to a fresh agent"
+policy:
+  allow_implicit_invocation: true

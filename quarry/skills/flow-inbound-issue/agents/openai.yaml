@@ -1,0 +1,5 @@
+interface:
+  display_name: "Flow Inbound Issue"
+  short_description: "Pin the triage-to-shipped lane"
+policy:
+  allow_implicit_invocation: true
